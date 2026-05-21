@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle de Cabelo - EB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="admin-panel">
+        <div class="nav-row">
+            <!-- Grupo Visualização -->
+            <div class="btn-group">
+                <div class="btn-group-header">📋 VISUALIZAÇÃO</div>
+                <div class="btn-group-buttons">
+                    <button id="btn-frente" class="nav-btn" onclick="mudarAba('frente')">Ver Lado 1 (Frente)</button>
+                    <button id="btn-verso" class="nav-btn" onclick="mudarAba('verso')">Ver Lado 2 (Verso)</button>
+                    <button id="btn-dobra" class="nav-btn" onclick="mudarAba('dobra')">🔍 Simulação de Dobra</button>
+                    <button id="btn-ficha" class="nav-btn active-btn" onclick="mudarAba('ficha')">📋 Ficha Auxiliar da SU</button>
+                </div>
+            </div>
+
+            <!-- Grupo Impressão -->
+            <div class="btn-group">
+                <div class="btn-group-header">🖨️ IMPRESSÃO</div>
+                <div class="btn-group-buttons">
+                    <button class="nav-btn print-btn" onclick="executarImpressao();">Imprimir Selecionados</button>
+                    <button class="nav-btn" style="background-color: #007bff;" onclick="imprimirCartoesAvulsoDadosPDF()">Impressão Individual</button>
+                    <button class="nav-btn" style="background-color: #6c757d;" onclick="imprimir4FrenteBranco()">4X FRENTE</button>
+                    <button class="nav-btn" style="background-color: #6c757d;" onclick="imprimir4VersoBranco()">4X VERSO</button>
+                </div>
+            </div>
+
+            <!-- Grupo Sistema -->
+            <div class="btn-group">
+                <div class="btn-group-header">💾 SISTEMA</div>
+                <div class="btn-group-buttons">
+                    <button class="nav-btn backup-btn" onclick="exportarBackupDados()">Salvar Backup</button>
+                    <label class="restore-label" for="file-restore">Carregar Backup</label>
+                    <input type="file" id="file-restore" accept=".json" style="display:none;" onchange="importarBackupDados(this)">
+                    <button class="nav-btn reset-btn" onclick="resetarSistemaCompleto()">Resetar Ano</button>
+                    <button class="nav-btn" style="background-color: #4caf50; color: white;" onclick="iniciarCadastroManualFluxo()">➕ Cadastrar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-row">
+            <label>Subunidade:</label>
+            <input type="text" id="cfg-su" value="1ª Cia CCH" style="width: 70px;" oninput="salvarDadosGerais()">
+            
+            <label style="border-left: 1px solid rgba(255,255,255,0.3); padding-left: 8px;">Importar Lista:</label>
+            <label class="file-label" for="file-import">📁 Selecionar nomes.txt</label>
+            <input type="file" id="file-import" accept=".txt" style="display:none;" onchange="importarArquivoTexto(this)">
+        </div>
+    </div>
+
+    <div class="ficha-wrapper" id="area-da-ficha">
+        <!-- Filtros -->
+        <div class="table-filter-bar">
+            <div class="filter-left">
+                <label>🔍 Filtrar Nome / Posto-Grad:</label>
+                <input type="text" id="search-militar-input" placeholder="Digite o nome..." style="width: 160px;" oninput="capturarFiltrosDinamicos()">
+                
+                <label style="margin-left: 10px;">Situação do Cartão:</label>
+                <select id="filter-status-select" onchange="capturarFiltrosDinamicos()">
+                    <option value="TODOS">Todos</option>
+                    <option value="VÁLIDO">✓ Válidos</option>
+                    <option value="VENCIDO">⚠ Vencidos</option>
+                    <option value="SEM CARTÃO">🛇 Sem Cartão</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dashboard Stats + Mostrar (na mesma linha) -->
+        <div class="dashboard-stats" id="dashboard-stats-panel">
+            <div class="stats-left">
+                <div class="stat-card">Efetivo Total:<span id="stat-total">0</span></div>
+                <div class="stat-card">✓ Cabelo em Dia:<span id="stat-valido" style="color: #66cc66;">0</span></div>
+                <div class="stat-card">⚠ Vencidos / Reemitir:<span id="stat-vencido" style="color: #ff6666;">0</span></div>
+                <div class="stat-card">🛇 Sem Cartão Gerado:<span id="stat-sem-cartao" style="color: #aaaaaa;">0</span></div>
+            </div>
+            <div class="stats-right">
+                <label>📄 Mostrar:</label>
+                <select id="rowsPerPage" onchange="mudarQuantidadePorPagina()">
+                    <option value="10">10 registros</option>
+                    <option value="25" selected>25 registros</option>
+                    <option value="50">50 registros</option>
+                    <option value="100">100 registros</option>
+                    <option value="999999">Todos os registros</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Tabela (será inserida via JS) -->
+        <div id="tabela-container"></div>
+
+        <!-- Paginação Inferior (apenas abaixo da tabela) -->
+        <div class="pagination-bottom" id="pagination-bottom">
+            <div class="pagination-controls-bottom">
+                <button id="btn-primeira-bottom" class="pagination-btn" onclick="primeiraPagina()">⏮️</button>
+                <button id="btn-anterior-bottom" class="pagination-btn" onclick="paginaAnterior()">◀</button>
+                <span class="pagina-info-bottom">Página <span id="pagina-atual-bottom">1</span> de <span id="total-paginas-bottom">1</span></span>
+                <button id="btn-proxima-bottom" class="pagination-btn" onclick="proximaPagina()">▶</button>
+                <button id="btn-ultima-bottom" class="pagination-btn" onclick="ultimaPagina()">⏩</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="document-container" id="main-container"></div>
+
+    <!-- Modais -->
+    <div class="modal-historico" id="modal-historico">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modal-militar-titulo">Histórico do Militar</span>
+                <button onclick="fecharModal('modal-historico')" style="background:transparent; border:none; color:white; font-size:16px; cursor:pointer; font-weight:bold;">✕</button>
+            </div>
+            <div class="modal-body">
+                <label style="font-weight:bold; font-size:12px;">Relatos e Ocorrências Registradas:</label>
+                <div class="history-list" id="modal-lista-historico"></div>
+                
+                <label style="font-weight:bold; font-size:12px; margin-top:5px;">Registrar Nova Ocorrência (Ex: Extravio, Perda, Novo Cartão):</label>
+                <textarea class="textarea-ocorrencia" id="modal-nova-ocorrencia" placeholder="Digite aqui o motivo do extravio ou reemissão do documento..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="nav-btn" style="background-color:#6c757d; color:white;" onclick="fecharModal('modal-historico')">Cancelar</button>
+                <button class="nav-btn" style="background-color:#28a745; color:white;" onclick="salvarOcorrenciaModal()">💾 Salvar Novo Relato</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-historico" id="modal-cadastro-manual">
+        <div class="modal-content" style="width: 600px;">
+            <div class="modal-header" style="background-color: #28a745;">
+                <span>Formulário de Inclusão Manual</span>
+                <button onclick="fecharModal('modal-cadastro-manual')" style="background:transparent; border:none; color:white; font-size:16px; cursor:pointer; font-weight:bold;">✕</button>
+            </div>
+            <div class="modal-body" id="corpo-inputs-manuais" style="gap:12px;"></div>
+            <div class="modal-footer">
+                <button class="nav-btn" style="background-color:#6c757d; color:white;" onclick="fecharModal('modal-cadastro-manual')">Cancelar</button>
+                <button class="nav-btn" style="background-color:#28a745; color:white; font-weight:bold;" onclick="submeterMilitaresManuais()">🗹 Submeter Efetivo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="frente.js"></script>
+    <script src="verso.js"></script>
+</body>
+</html>

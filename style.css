@@ -1,0 +1,486 @@
+/* Configurações de Página e Impressão */
+@page {
+    size: A4 landscape;
+    margin: 0;
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2b3e2a;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding-top: 160px;
+}
+/* Painel de Controle Superior (Fixo) */
+.admin-panel {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-color: #1c341b;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 9999;
+    padding: 12px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.nav-row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.config-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.1);
+    padding: 8px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+.nav-btn {
+    background-color: #ffffff;
+    color: #1c341b;
+    border: none;
+    padding: 8px 14px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+.nav-btn:hover { background-color: #d0d0d0; }
+.active-btn { background-color: #4caf50 !important; color: white; }
+.print-btn { background-color: #e0a904; color: #000; }
+.print-btn:hover { background-color: #c79603; }
+
+.file-label {
+    background-color: #008cba;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.file-label:hover { background-color: #007399; }
+
+.backup-btn { background-color: #28a745; color: white; }
+.backup-btn:hover { background-color: #218838; }
+.restore-label { background-color: #17a2b8; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; }
+.reset-btn { background-color: #d9534f; color: white; }
+.reset-btn:hover { background-color: #c9302c; }
+
+.config-row label {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.config-row input {
+    padding: 4px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+}
+
+/* Estrutura Visual da Ficha e Filtros */
+.ficha-wrapper {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.table-filter-bar {
+    width: 95%;
+    box-sizing: border-box;
+    background-color: #1c341b;
+    padding: 10px 15px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.filter-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.table-filter-bar label {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.table-filter-bar input, .table-filter-bar select {
+    padding: 5px 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+/* Painel de Indicadores Estatísticos (Dashboard) */
+.dashboard-stats {
+    width: 95%;
+    box-sizing: border-box;
+    background-color: #162a15;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.stats-left {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.stats-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.stats-right label {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+.stats-right select {
+    padding: 5px 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    background: white;
+}
+.stat-card {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+.stat-card span {
+    font-size: 13px;
+    color: #e0a904;
+    margin-left: 4px;
+}
+
+/* Tabela da Ficha Auxiliar */
+.ficha-table { 
+    width: 95%; 
+    background: white; 
+    border-collapse: collapse; 
+    font-family: Arial, sans-serif; 
+    font-size: 13px; 
+    margin-top: 0px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
+    border-bottom-left-radius: 6px; 
+    border-bottom-right-radius: 6px; 
+    overflow: hidden; 
+}
+.ficha-table th, .ficha-table td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+.ficha-table th { background-color: #142613; color: white; }
+.ficha-table tr:nth-child(even) { background-color: #f2f2f2; }
+
+.editable-cell-input {
+    width: 90%; border: none; background: transparent; font-family: Arial, sans-serif;
+    font-size: 13px; font-weight: bold; text-align: center; padding: 4px;
+}
+.editable-cell-input:focus { background: #fff8dc; outline: 1px solid #1c341b; border-radius: 3px; }
+.date-cell-input { border: 1px solid #bbb; padding: 3px; font-family: Arial, sans-serif; font-size: 12px; text-align: center; border-radius: 3px; }
+
+/* Badges de Estados de Validade */
+.status-sem-cartao { background-color: #e2e3e5; color: #383d41; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.status-valido { background-color: #d4edda; color: #155724; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.status-vencido { background-color: #f8d7da; color: #721c24; font-weight: bold; padding: 4px 8px; border-radius: 4px; font-size: 11px; animation: piscar 1.5s infinite; }
+@keyframes piscar { 0% {opacity: 1;} 50% {opacity: 0.5;} 100% {opacity: 1;} }
+.badge-count { background: #1c341b; color: white; border-radius: 12px; padding: 2px 7px; font-size: 11px; font-weight: bold; }
+
+/* Janelas Modais (Histórico e Cadastro Manual) */
+.modal-historico {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6); z-index: 10000; justify-content: center; align-items: center;
+}
+.modal-content {
+    background-color: white; width: 550px; max-width: 90%; border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5); font-family: Arial, sans-serif;
+    display: flex; flex-direction: column; overflow: hidden;
+}
+.modal-header { background-color: #1c341b; color: white; padding: 12px 15px; font-weight: bold; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+.modal-body { padding: 15px; display: flex; flex-direction: column; gap: 10px; max-height: 400px; overflow-y: auto; }
+.modal-footer { background-color: #f5f5f5; padding: 10px 15px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #ddd; }
+
+.history-list {
+    max-height: 180px; overflow-y: auto; border: 1px solid #ddd;
+    border-radius: 4px; padding: 8px; background: #fafafa; display: flex; flex-direction: column; gap: 6px;
+}
+.history-item { font-size: 12px; padding: 6px; border-bottom: 1px dashed #ccc; background: #fff; border-radius: 2px; }
+.history-item:last-child { border-bottom: none; }
+.history-date { font-weight: bold; color: #1c341b; margin-right: 5px; }
+.textarea-ocorrencia { width: 96%; height: 60px; padding: 8px; font-family: Arial; font-size: 12px; border: 1px solid #bbb; border-radius: 4px; resize: none; }
+.row-add-manual { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; background: #f9f9f9; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 8px; }
+.row-add-manual input { padding: 6px; font-size: 12px; border: 1px solid #bbb; border-radius: 3px; text-transform: uppercase; }
+
+/* Layout de Impressão das Fichas Físicas (A4) */
+.document-container { display: flex; flex-direction: column; align-items: center; gap: 25px; padding-bottom: 40px; width: 100%; }
+.print-page {
+    width: 297mm; height: 210mm; max-height: 210mm; background: white;
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 4mm;
+    box-sizing: border-box; padding: 8mm; overflow: hidden; box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    page-break-after: always; page-break-inside: avoid; margin-top: 20px;
+}
+.card-container { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #000; height: 94mm; box-sizing: border-box; background: white; position: relative; }
+.card-half { box-sizing: border-box; display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+
+.frente-padding { padding: 3mm 6mm; justify-content: flex-start; }
+.blank-side { 
+    border-right: 1px dashed #bbb; 
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bras%C3%A3o_do_Ex%C3%A9rcito_Brasileiro.svg/200px-Bras%C3%A3o_do_Ex%C3%A9rcito_Brasileiro.svg.png');
+    background-repeat: no-repeat; background-position: center; background-size: 55mm 55mm; opacity: 0.08;
+}
+.content-side { align-items: center; background-color: #ffffff; }
+.header { text-align: center; font-weight: bold; font-size: 9.5pt; text-transform: uppercase; line-height: 1.2; margin-bottom: 2px; width: 100%; }
+.brasao-img { width: 56px; height: 56px; margin: 0 auto 4px auto; display: block; object-fit: contain; }
+.om-section { display: flex; width: 100%; justify-content: space-between; font-size: 8.5pt; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; align-items: flex-start; }
+.sublinhado-termo { display: inline-block; border-bottom: 1px solid #000; padding-bottom: 1px; margin-bottom: 4px; }
+.om-left { text-align: left; }
+.om-right { 
+    text-align: right; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end; 
+}
+.om-right span {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+.visto-section { width: 100%; margin-top: 15px; margin-bottom: 14px; text-align: center; font-size: 8pt; }
+.visto-line { width: 80%; border-bottom: 1px solid black; margin: 0 auto 3px auto; height: 14px; }
+.title { font-weight: bold; font-size: 10.5pt; text-align: center; margin-bottom: 12px; letter-spacing: 0.5px; }
+.form-group { width: 100%; margin-bottom: 5px; font-size: 9.5pt; display: flex; align-items: flex-end; }
+.form-group label { font-weight: bold; white-space: nowrap; margin-right: 4px; }
+.form-group input { border: none; border-bottom: 1px solid black; width: 100%; padding: 0; margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 10.5pt; text-align: center; background: transparent; }
+.inline-group { display: flex; width: 100%; justify-content: space-between; }
+
+.table-side-left { border-right: 1px dashed #bbb; }
+.verso-half { padding: 3mm 4mm; justify-content: center; position: relative; }
+.verso-watermark { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bras%C3%A3o_do_Ex%C3%A9rcito_Brasileiro.svg/200px-Bras%C3%A3o_do_Ex%C3%A9rcito_Brasileiro.svg.png'); background-repeat: no-repeat; background-position: center; background-size: 55mm 55mm; opacity: 0.05; pointer-events: none; z-index: 1; }
+
+.verso-half table { width: 100%; height: 100%; border-collapse: collapse; font-size: 7pt; text-align: center; background: transparent; position: relative; z-index: 2; }
+.verso-half table, .verso-half th, .verso-half td { border: 1px solid black; }
+.verso-half th { font-weight: bold; height: 8%; text-transform: uppercase; background: rgba(240,240,240,0.6); }
+.verso-half td { height: 5.1%; }
+.mes-celula { font-weight: bold; font-size: 7.5pt; background-color: rgba(250,250,250,0.6); }
+
+/* Marcas de corte para recorte preciso */
+.crop-mark {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    z-index: 100;
+}
+.crop-mark-top-left { top: -1px; left: -1px; border-top: 1px solid black; border-left: 1px solid black; }
+.crop-mark-top-right { top: -1px; right: -1px; border-top: 1px solid black; border-right: 1px solid black; }
+.crop-mark-bottom-left { bottom: -1px; left: -1px; border-bottom: 1px solid black; border-left: 1px solid black; }
+.crop-mark-bottom-right { bottom: -1px; right: -1px; border-bottom: 1px solid black; border-right: 1px solid black; }
+
+/* Media Query para Impressão limpa */
+@media print {
+    .admin-panel, .modal-historico, .ficha-wrapper, .table-filter-bar, .dashboard-stats { display: none !important; }
+    body { background: white !important; margin: 0 !important; padding: 0 !important; }
+    .document-container { display: block !important; margin: 0 !important; padding: 0 !important; }
+    .print-page {
+        width: 297mm !important; height: 210mm !important;
+        max-width: 297mm !important; max-height: 210mm !important;
+        box-sizing: border-box !important; overflow: hidden !important;
+        display: grid !important; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+        margin: 0 !important; padding: 8mm !important; page-break-after: always;
+        box-shadow: none !important;
+    }
+    .single-print-container { width: 148mm !important; height: 105mm !important; margin: 0 !important; padding: 0 !important; display: block !important; }
+}
+
+/* Grupos de botões */
+.btn-group {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 8px 12px;
+    border-left: 3px solid #4caf50;
+    transition: all 0.2s;
+}
+.btn-group:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+.btn-group-header {
+    font-size: 10px;
+    font-weight: bold;
+    color: #4caf50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-group-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+.btn-group-buttons .nav-btn,
+.btn-group-buttons .restore-label {
+    margin: 0;
+    white-space: nowrap;
+}
+.restore-label {
+    display: inline-block;
+    background-color: #17a2b8;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.2s;
+}
+.restore-label:hover {
+    background-color: #138496;
+}
+
+/* Paginação Inferior - centralizada abaixo da tabela */
+.pagination-bottom {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.pagination-controls-bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #162a15;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+.pagination-btn {
+    background-color: #1c341b;
+    color: white;
+    border: 1px solid #4caf50;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+.pagination-btn:hover:not(:disabled) {
+    background-color: #4caf50;
+    color: white;
+}
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.pagina-info-bottom {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.3);
+    padding: 5px 15px;
+    border-radius: 4px;
+}
+
+/* Estilo para o número de ordenação */
+.ordem-numero {
+    font-weight: bold;
+    color: #1c341b;
+    font-size: 13px;
+}
+
+/* Ajuste da tabela para acomodar a nova coluna */
+.ficha-table th {
+    background-color: #142613;
+    color: white;
+    padding: 10px 5px;
+    font-size: 12px;
+}
+
+.ficha-table td {
+    padding: 8px 5px;
+    vertical-align: middle;
+}
+
+/* Ajuste dos botões na tabela */
+.ficha-table .nav-btn {
+    padding: 4px 6px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+/* Estilo para o tooltip (balão de ajuda) */
+[title] {
+    position: relative;
+    cursor: help;
+}
+
+/* Tooltip customizado para navegadores que suportam */
+.status-sem-cartao[title],
+.status-valido[title],
+.status-vencido[title] {
+    cursor: help;
+    border-bottom: 1px dotted rgba(0,0,0,0.3);
+}
+
+/* Melhora o tooltip padrão do navegador */
+.status-valido[title] {
+    border-bottom: 1px dotted #155724;
+}
+
+.status-vencido[title] {
+    border-bottom: 1px dotted #721c24;
+}
+
+.status-sem-cartao[title] {
+    border-bottom: 1px dotted #383d41;
+}
+
+/* Estilo para o checkbox do cabeçalho */
+#checkbox-todos {
+    transform: scale(1.2);
+    cursor: pointer;
+    margin: 0;
+}
+
+/* Estilo para estado indeterminado (meio marcado) */
+#checkbox-todos:indeterminate {
+    background-color: #4caf50;
+    position: relative;
+}
+
+/* Tooltip para o checkbox todos */
+#checkbox-todos {
+    title: "Marcar/Desmarcar todos da página";
+}
