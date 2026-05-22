@@ -784,7 +784,7 @@ function imprimir4FrenteBranco() {
             <div class="card-container">
                 <div class="card-half blank-side"></div>
                 <div class="card-half content-side">
-                    <div class="header"><img class="brasao-img" src="${urlBrasao}">Ministério da Defesa<br>Exército Brasileiro</div>
+                    <div class="header"><img class="brasao-img" src='${urlBrasao}'>Ministério da Defesa<br>Exército Brasileiro</div>
                     <div class="om-section"><div class="om-left"><span class="sublinhado-termo">CMS</span></div><div class="om-right"><span class="sublinhado-termo">3ª RM</span><span class="sublinhado-termo">6ª Bda Inf Bld</span><span class="sublinhado-termo">4º RCC</span></div></div>
                     <div class="visto-section"><div class="visto-line"></div><strong>VISTO: SUB-CMT</strong></div>
                     <div class="title">REGISTRO DE CORTE DE CABELO</div>
